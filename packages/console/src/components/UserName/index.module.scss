@@ -1,0 +1,23 @@
+@use '@/scss/underscore' as _;
+
+.userName {
+  font: var(--body-medium);
+  color: var(--color-text);
+
+  .title {
+    display: inline-flex;
+    align-items: center;
+    max-width: 100%;
+    @include _.text-ellipsis;
+
+    span {
+      margin-left: _.unit(2);
+    }
+  }
+
+  .link {
+    display: inline-flex;
+    text-decoration: none;
+    color: var(--color-text-link);
+  }
+}

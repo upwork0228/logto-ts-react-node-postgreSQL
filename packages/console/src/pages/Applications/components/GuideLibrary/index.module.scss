@@ -1,0 +1,106 @@
+@use '@/scss/underscore' as _;
+@use '@/scss/dimensions' as dim;
+
+.container {
+  width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  min-width: dim.$guide-content-min-width;
+  max-width: dim.$guide-content-max-width;
+  margin: 0 auto;
+  position: relative;
+
+  &.hasFilters {
+    padding: dim.$guide-content-padding calc(dim.$guide-sidebar-width + dim.$guide-panel-gap + dim.$guide-content-padding);
+  }
+}
+
+.filterAnchor {
+  position: absolute;
+  inset: 0 auto 0 0;
+  transform: translateX(-100%);
+}
+
+.filters {
+  position: sticky;
+  top: dim.$guide-content-padding;
+  display: flex;
+  flex-direction: column;
+  width: dim.$guide-sidebar-width;
+  gap: _.unit(4);
+  margin-right: dim.$guide-panel-gap;
+
+  label {
+    font: var(--font-label-2);
+    color: var(--color-text);
+  }
+
+  .searchInput {
+    svg {
+      color: var(--color-text-secondary);
+    }
+  }
+
+  .checkboxGroupContainer {
+    position: relative;
+  }
+
+  .checkboxGroup {
+    gap: _.unit(4);
+  }
+
+  .proTag {
+    position: absolute;
+    right: -2px;
+    bottom: 0;
+    @include _.z-index(front);
+  }
+}
+
+.groups {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  > div {
+    flex: unset;
+  }
+}
+
+.protectedAppCard {
+  margin-bottom: _.unit(4);
+}
+
+.wrapper.hasFilters .groups {
+  max-width: dim.$guide-main-content-max-width;
+}
+
+.guideGroup {
+  flex: 1;
+
+  + .guideGroup {
+    margin-top: _.unit(8);
+  }
+}
+
+.emptyPlaceholder {
+  width: 100%;
+  height: calc(100vh - 188px);
+  display: flex;
+}
+
+.viewAll {
+  margin-top: _.unit(8);
+}
+
+@media screen and (max-width: dim.$guide-content-max-width) {
+  .wrapper.hasFilters {
+    margin-left: 0;
+    padding-right: dim.$guide-content-padding;
+    max-width: calc(dim.$guide-main-content-max-width + dim.$guide-sidebar-width + dim.$guide-panel-gap + 2 * dim.$guide-content-padding);
+  }
+}

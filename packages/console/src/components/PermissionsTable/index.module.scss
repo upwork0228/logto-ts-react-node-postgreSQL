@@ -1,0 +1,30 @@
+@use '@/scss/underscore' as _;
+
+.permissionTable {
+  flex: 1;
+  margin-bottom: _.unit(6);
+  color: var(--color-text);
+
+  .filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .createButton {
+      margin-left: _.unit(2);
+    }
+  }
+
+  .description {
+    @include _.text-ellipsis;
+  }
+
+  .link {
+    display: block;
+    @include _.text-ellipsis;
+  }
+
+  .actionColumn {
+    text-align: right;
+  }
+}

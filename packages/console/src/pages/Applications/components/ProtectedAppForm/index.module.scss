@@ -1,0 +1,83 @@
+@use '@/scss/underscore' as _;
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.formFieldWrapper {
+  display: flex;
+  gap: _.unit(9);
+
+  .index {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--color-function-n-overlay-primary-focused);
+    color: var(--color-text-link);
+    font: var(--font-title-3);
+    position: relative;
+  }
+
+  .withDashedLine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .dashedLine {
+      flex: 1;
+      border-left: 1px dashed var(--color-border);
+      margin: _.unit(1.5) 0;
+    }
+  }
+
+  .field {
+    flex: 1;
+    margin: 0;
+    padding-bottom: _.unit(6);
+  }
+}
+
+.input {
+  background: var(--color-layer-1);
+}
+
+.domainFieldWrapper {
+  display: flex;
+  width: 100%;
+
+  .subdomain {
+    flex: 1;
+
+    > div {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .domain {
+    display: flex;
+    align-items: center;
+    padding: 0 _.unit(4);
+    border: 1px solid var(--color-border);
+    height: 36px;
+    border-radius: 0 6px 6px 0;
+    border-left: none;
+    font: var(--font-body-2);
+    color: var(--color-text);
+    background-color: var(--color-specific-unselected-disabled);
+  }
+}
+
+.submitButton {
+  align-self: flex-end;
+
+  &.leftAligned {
+    align-self: flex-start;
+    margin-left: _.unit(15);
+  }
+}

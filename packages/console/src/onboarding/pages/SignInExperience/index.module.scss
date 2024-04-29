@@ -1,0 +1,43 @@
+@use '@/scss/underscore' as _;
+
+.content {
+  display: flex;
+  justify-content: center;
+  min-width: min-content;
+  padding: 0 _.unit(17);
+
+  > div {
+    max-width: 800px;
+    min-width: 540px;
+    flex: 1;
+  }
+
+  .config {
+    background-color: var(--color-layer-1);
+    border-radius: 8px;
+    padding: _.unit(12);
+    margin-right: _.unit(6);
+
+    .title {
+      margin-top: _.unit(6);
+      font: var(--font-title-1);
+    }
+
+    .authnSelector {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .preview {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+  }
+}
+
+.continueActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: _.unit(4);
+}

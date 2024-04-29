@@ -1,0 +1,54 @@
+@use '@/scss/dimensions' as dim;
+@use '@/scss/underscore' as _;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - _.unit(12));
+  min-width: dim.$modal-layout-width-small;
+  padding: _.unit(6);
+  margin: 0 _.unit(6);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+
+  .header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-shrink: 0;
+    margin-bottom: _.unit(6);
+
+    .iconAndTitle {
+      display: flex;
+      flex-direction: column;
+      gap: _.unit(3);
+    }
+
+    .closeIcon {
+      color: var(--color-text-secondary);
+    }
+  }
+
+  .footer {
+    flex-shrink: 0;
+    padding-top: _.unit(6);
+    display: flex;
+    justify-content: flex-end;
+
+    > :not(:first-child) {
+      margin-left: _.unit(4);
+    }
+  }
+
+  &.medium {
+    max-width: dim.$modal-layout-width-medium;
+  }
+
+  &.large {
+    max-width: dim.$modal-layout-width-large;
+  }
+
+  &.xlarge {
+    max-width: dim.$modal-layout-width-xlarge;
+  }
+}

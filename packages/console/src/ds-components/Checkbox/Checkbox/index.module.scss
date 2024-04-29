@@ -1,0 +1,70 @@
+@use '@/scss/underscore' as _;
+
+.checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    width: 20px;
+    height: 20px;
+
+    .border {
+      fill: var(--color-text-secondary);
+    }
+
+    .background {
+      fill: var(--color-layer-1);
+    }
+
+    &.checked {
+      .background {
+        fill: var(--color-primary);
+      }
+    }
+
+    &.disabled {
+      .background {
+        fill: var(--color-checkbox-disabled-background);
+      }
+
+      .border {
+        fill: var(--color-border);
+      }
+    }
+
+    &.checked.disabled {
+      .background {
+        fill: var(--color-checkbox-checked-disabled-background);
+      }
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .tooltipAnchor {
+    display: flex;
+    align-items: center;
+    margin-right: _.unit(2);
+  }
+
+  .label {
+    font: var(--font-body-2);
+    color: var(--color-text);
+    white-space: nowrap;
+    cursor: inherit;
+    display: flex;
+    align-items: center;
+    gap: _.unit(1);
+  }
+
+  &.disabled {
+    .wrapper {
+      cursor: not-allowed;
+    }
+  }
+}

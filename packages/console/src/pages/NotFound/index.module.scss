@@ -1,0 +1,21 @@
+@use '@/scss/underscore' as _;
+
+.container {
+  height: 100%;
+  padding: _.unit(6);
+}
+
+.content {
+  height: 100%;
+  color: var(--color-text);
+  text-align: center;
+  overflow: hidden;
+
+  svg {
+    margin: 15% 0 _.unit(4);
+  }
+
+  .message {
+    font: var(--font-body-2);
+  }
+}

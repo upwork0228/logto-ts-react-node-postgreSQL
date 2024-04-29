@@ -1,0 +1,27 @@
+@use '@/scss/underscore' as _;
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: _.unit(5) _.unit(6);
+  gap: _.unit(6);
+
+
+  .domain {
+    font: var(--font-title-2);
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-text-secondary);
+  }
+}
+
+.strong {
+  font: var(--font-title-3);
+}
+
+.inUsedDeletionTip {
+  margin-top: _.unit(5);
+}

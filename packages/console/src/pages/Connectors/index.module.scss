@@ -1,0 +1,20 @@
+@use '@/scss/underscore' as _;
+
+.container {
+  .tabs {
+    margin-top: _.unit(4);
+  }
+
+  .connectorName {
+    width: 360px;
+  }
+
+  .empty {
+    text-align: center;
+    font-size: var(--font-body-2);
+  }
+
+  .emptyLine {
+    padding: _.unit(2) 0;
+  }
+}

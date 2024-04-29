@@ -1,0 +1,68 @@
+{
+  "name": "@logto/shared",
+  "version": "3.1.0",
+  "main": "lib/index.js",
+  "author": "Silverhand Inc. <contact@silverhand.io>",
+  "license": "MPL-2.0",
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./universal": {
+      "import": "./lib/universal.js",
+      "types": "./lib/universal.d.ts"
+    },
+    "./esm": {
+      "import": "./lib/esm/index.js",
+      "types": "./lib/esm/index.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "build": "rm -rf lib/ && tsc -p tsconfig.build.json",
+    "build:test": "pnpm build",
+    "dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput --incremental",
+    "lint": "eslint --ext .ts src",
+    "lint:report": "pnpm lint --format json --output-file report.json",
+    "prepack": "pnpm build",
+    "test": "vitest src",
+    "test:ci": "pnpm run test --silent --coverage"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@silverhand/eslint-config": "6.0.1",
+    "@silverhand/ts-config": "6.0.0",
+    "@types/node": "^20.9.5",
+    "@vitest/coverage-v8": "^1.4.0",
+    "eslint": "^8.56.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.4.0"
+  },
+  "engines": {
+    "node": "^20.9.0"
+  },
+  "eslintConfig": {
+    "extends": "@silverhand",
+    "rules": {
+      "@typescript-eslint/ban-types": "off"
+    }
+  },
+  "prettier": "@silverhand/eslint-config/.prettierrc",
+  "dependencies": {
+    "@silverhand/essentials": "^2.9.0",
+    "chalk": "^5.0.0",
+    "find-up": "^7.0.0",
+    "libphonenumber-js": "^1.9.49",
+    "nanoid": "^5.0.1"
+  }
+}

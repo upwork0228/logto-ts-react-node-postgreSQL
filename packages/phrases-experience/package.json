@@ -1,0 +1,59 @@
+{
+  "name": "@logto/phrases-experience",
+  "version": "1.6.1",
+  "description": "Logto shared phrases (i18n) for experience.",
+  "author": "Silverhand Inc. <contact@silverhand.io>",
+  "homepage": "https://github.com/logto-io/logto#readme",
+  "license": "MPL-2.0",
+  "type": "module",
+  "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logto-io/logto.git"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "build": "rm -rf lib/ && tsc",
+    "build:test": "pnpm build",
+    "dev": "tsc --watch --preserveWatchOutput --incremental",
+    "lint": "eslint --ext .ts src",
+    "lint:report": "pnpm lint --format json --output-file report.json",
+    "prepack": "pnpm build"
+  },
+  "bugs": {
+    "url": "https://github.com/logto-io/logto/issues"
+  },
+  "dependencies": {
+    "@logto/core-kit": "workspace:^2.4.0",
+    "@logto/language-kit": "workspace:^1.1.0",
+    "@silverhand/essentials": "^2.9.0"
+  },
+  "peerDependencies": {
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@silverhand/eslint-config": "6.0.1",
+    "@silverhand/ts-config": "6.0.0",
+    "buffer": "^5.7.1",
+    "eslint": "^8.56.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": "^20.9.0"
+  },
+  "eslintConfig": {
+    "extends": "@silverhand"
+  },
+  "prettier": "@silverhand/eslint-config/.prettierrc"
+}

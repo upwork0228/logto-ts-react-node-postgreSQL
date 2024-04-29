@@ -1,0 +1,13 @@
+@use '@/scss/underscore' as _;
+
+.tabs {
+  margin-top: _.unit(4);
+}
+
+.emptyCardContainer {
+  margin-top: _.unit(4);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

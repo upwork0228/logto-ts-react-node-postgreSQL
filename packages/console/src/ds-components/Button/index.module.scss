@@ -1,0 +1,264 @@
+@use '@/scss/underscore' as _;
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  border-radius: _.unit(2);
+  font: var(--font-label-2);
+  transition: background-color 0.2s ease-in-out;
+  white-space: nowrap;
+  user-select: none;
+  position: relative;
+  text-decoration: none;
+  gap: _.unit(2);
+
+  &.withIcon {
+    display: inline-flex;
+  }
+
+  &.loading {
+    pointer-events: none;
+    opacity: 60%;
+
+    .spinner {
+      position: absolute;
+    }
+
+    .spinner ~ span {
+      visibility: hidden;
+    }
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+
+  .trailingIcon {
+    display: flex;
+    align-items: center;
+  }
+
+  &.small {
+    height: 30px;
+    padding: 0 _.unit(3);
+    gap: _.unit(1);
+
+    &.text {
+      height: 24px;
+    }
+  }
+
+  &.medium {
+    height: 36px;
+    padding: 0 _.unit(4);
+
+    &.text {
+      font: var(--font-label-1);
+      height: 28px;
+    }
+  }
+
+  &.large {
+    height: 44px;
+    padding: 0 _.unit(6);
+
+    &.text {
+      // same as medium
+      font: var(--font-label-1);
+      height: 28px;
+    }
+  }
+
+  &.default {
+    background: var(--color-layer-1);
+    color: var(--color-text);
+    border-color: var(--color-border);
+    border-width: 1px;
+    border-style: solid;
+
+    .icon {
+      color: var(--color-text-secondary);
+    }
+
+    &:disabled {
+      border-color: var(--color-border);
+      color: var(--color-neutral-70);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-focused);
+    }
+
+    &:active {
+      background: var(--color-pressed);
+    }
+
+    &:not(:disabled):not(:active):hover {
+      background: var(--color-hover);
+    }
+  }
+
+  &.branding {
+    background: linear-gradient(90deg, #5d34f2 32%, #bd31ff 102%);
+    color: var(--color-on-primary);
+
+    &:focus-visible {
+      background:
+        linear-gradient(0deg, rgba(0, 0, 0, 20%), rgba(0, 0, 0, 20%)),
+        linear-gradient(90deg, #5d34f2 32%, #bd31ff 102%);
+    }
+
+    &:active {
+      background:
+        linear-gradient(0deg, rgba(0, 0, 0, 20%), rgba(0, 0, 0, 20%)),
+        linear-gradient(90deg, #5d34f2 32%, #bd31ff 102%);
+    }
+
+    &:not(:disabled):not(:active):hover {
+      background:
+        linear-gradient(0deg, rgba(255, 255, 255, 20%), rgba(255, 255, 255, 20%)),
+        linear-gradient(90deg, #5d34f2 32%, #bd31ff 102%);
+    }
+  }
+
+  &.primary {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+
+    &:disabled {
+      background: var(--color-inverse-on-surface);
+      color: var(--color-neutral-70);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-focused-variant);
+    }
+
+    &:active {
+      background: var(--color-primary-pressed);
+    }
+
+    &:not(:disabled):not(:active):hover {
+      background: var(--color-primary-hover);
+    }
+  }
+
+  &.danger {
+    background: var(--color-error);
+    color: var(--color-on-primary);
+
+    &:disabled {
+      background: var(--color-inverse-on-surface);
+      color: var(--color-neutral-70);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-danger-focused);
+    }
+
+    &:active {
+      background: var(--color-danger-pressed);
+    }
+
+    &:not(:disabled):not(:active):hover {
+      background: var(--color-danger-hover);
+    }
+  }
+
+  &.outline {
+    background-color: inherit;
+    border-color: var(--color-text-link);
+    border-width: 1px;
+    border-style: solid;
+    color: var(--color-text-link);
+
+    &:disabled {
+      border-color: var(--color-neutral-70);
+      color: var(--color-neutral-70);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-focused-variant);
+    }
+
+    &:active {
+      background: var(--color-pressed-variant);
+    }
+
+    &:not(:disabled):not(:active):hover {
+      background: var(--color-hover-variant);
+    }
+  }
+
+  &.text {
+    background: none;
+    border-color: none;
+    font: var(--font-label-2);
+    color: var(--color-text-link);
+    padding: _.unit(0.5) _.unit(1);
+    border-radius: 4px;
+
+    &:disabled {
+      color: var(--color-disabled);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-focused-variant);
+    }
+
+    &:not(:disabled):hover {
+      background-color: var(--color-hover-variant);
+    }
+  }
+
+  &.violet {
+    background: var(--color-layer-1);
+    border: 1px solid var(--color-surface-5);
+    overflow: hidden;
+    position: relative;
+
+    .icon,
+    .trailingIcon {
+      color: var(--color-primary);
+    }
+
+    &:disabled {
+      color: var(--color-disabled);
+
+      .icon,
+      .trailingIcon {
+        color: var(--color-primary-80);
+      }
+    }
+
+    &:focus-visible {
+      border: 2px solid var(--color-primary-40);
+      outline: 4px solid var(--color-focused-variant);
+    }
+
+    &:not(:disabled):hover {
+      background-color: var(--color-hover-variant);
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: var(--color-layer-1);
+        @include _.z-index(behind);
+      }
+    }
+  }
+}

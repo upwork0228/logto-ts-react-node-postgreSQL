@@ -1,0 +1,12 @@
+@use '@/scss/underscore' as _;
+
+.factorLabel {
+  display: flex;
+  flex-direction: column;
+  gap: _.unit(1);
+}
+
+.factorDescription {
+  font: var(--font-body-2);
+  color: var(--color-text-secondary);
+}

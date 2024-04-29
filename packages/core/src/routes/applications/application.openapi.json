@@ -1,0 +1,118 @@
+{
+  "tags": [
+    {
+      "name": "Applications",
+      "description": "Application represents your registered software program or service that has been authorized to access user information and perform actions on behalf of users within the system. Currently, Logto supports four types of applications:\n\n- Traditional web\n\n- Single-page app\n- Native app\n- Machine-to-machine app.\n\nDepending on the application type, it may have different authentication flows and access to the system. See [🔗 Integrate Logto in your application](https://docs.logto.io/docs/recipes/integrate-logto/) to learn more about how to integrate Logto into your application.\n\nRole-based access control (RBAC) is supported for machine-to-machine applications. See [🔐 Role-based access control (RBAC)](https://docs.logto.io/docs/recipes/rbac/) to get started with role-based access control."
+    }
+  ],
+  "paths": {
+    "/api/applications": {
+      "get": {
+        "summary": "Get applications",
+        "description": "Get applications that match the given query with pagination.",
+        "parameters": [
+          {
+            "name": "types",
+            "in": "query",
+            "description": "An array of application types to filter applications."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of applications."
+          }
+        }
+      },
+      "post": {
+        "summary": "Create an application",
+        "description": "Create a new application with the given data.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "protectedAppMetadata": {
+                    "description": "The data for protected app, this feature is not available for open source version.",
+                    "properties": {
+                      "subDomain": {
+                        "description": "The subdomain prefix, e.g., my-site."
+                      },
+                      "origin": {
+                        "description": "The origin of target website, e.g., https://example.com."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The application was created successfully."
+          },
+          "422": {
+            "description": "Validation error. Please check the request body."
+          }
+        }
+      }
+    },
+    "/api/applications/{id}": {
+      "get": {
+        "summary": "Get application",
+        "description": "Get application details by ID.",
+        "responses": {
+          "200": {
+            "description": "Details of the application."
+          },
+          "404": {
+            "description": "The application with the specified ID was not found."
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update application",
+        "description": "Update application details by ID with the given data.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "isAdmin": {
+                    "description": "Whether the application has admin access. User can enable the admin access for Machine-to-Machine apps."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The application was updated successfully."
+          },
+          "404": {
+            "description": "The application with the specified ID was not found."
+          },
+          "422": {
+            "description": "Validation error. Please check the request body."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete application",
+        "description": "Delete application by ID.",
+        "responses": {
+          "204": {
+            "description": "The application was deleted successfully."
+          },
+          "404": {
+            "description": "The application with the specified ID was not found."
+          }
+        }
+      }
+    }
+  }
+}

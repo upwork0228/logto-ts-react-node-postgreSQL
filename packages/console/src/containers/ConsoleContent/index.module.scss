@@ -1,0 +1,26 @@
+@use '@/scss/underscore' as _;
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.overlayScrollbarWrapper {
+  flex-grow: 1;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+  padding: 0 _.unit(6) 0 _.unit(2);
+
+  > * {
+    @include _.main-content-width;
+  }
+
+  // App Insights wrapper on cloud env prevents the CSS assignment to direct children
+  [class='appInsightsWrapper'] > * {
+    @include _.main-content-width;
+  }
+}

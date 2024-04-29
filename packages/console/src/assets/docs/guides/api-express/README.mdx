@@ -1,0 +1,251 @@
+import Tabs from '@mdx/components/Tabs';
+import TabItem from '@mdx/components/TabItem';
+import InlineNotification from '@/ds-components/InlineNotification';
+import Steps from '@/mdx-components/Steps';
+import Step from '@/mdx-components/Step';
+import { appendPath } from '@silverhand/essentials';
+
+<Steps>
+
+<Step title="Prerequisites">
+
+Before diving in, ensure you have the following:
+
+- An Express.js project that needs API protection and a client application that consumes the API.
+- Basic familiarity with [JSON Web Token (JWT)](https://datatracker.ietf.org/doc/html/rfc7519).
+
+<InlineNotification>
+
+We understand that the RFC can be lengthy. In short, a JWT is a base64-encoded string comprising three parts: header, payload, and signature. The payload stores the information you want, while the signature ensures token integrity.
+
+</InlineNotification>
+
+</Step>
+
+<Step title="Obtain an access token in your client application">
+
+To proceed, you'll need to integrate the Logto SDK into your client application. This application might differ from your Express.js backend; for example, you might have a React app using Express.js as the backend API server.
+
+You'll also need to tweak the Logto SDK configuration to inform Logto that you want to request an access token for your API in this grant. Here's an example using React:
+
+<pre>
+  <code className="language-ts">
+  {`import { LogtoProvider } from '@logto/react';
+
+const App = () => {
+  return (
+    <LogtoProvider
+      config={{
+        // ...other configurations
+        resources: ['${props.audience}'],
+      }}
+    >
+      <Content />
+    </LogtoProvider>
+  );
+};`}
+  </code>
+</pre>
+
+Once a user signs in with Logto, `isAuthenticated` within the Logto SDK will become `true`:
+
+<pre>
+  <code className="language-ts">
+  {`import { useLogto } from '@logto/react';
+
+const Content = () => {
+  const { isAuthenticated } = useLogto();
+
+  console.log(isAuthenticated); // true
+};`}
+  </code>
+</pre>
+
+Now, you can use the `getAccessToken` method to retrieve an access token for your API:
+
+<pre>
+  <code className="language-ts">
+  {`const Content = () => {
+  const { getAccessToken, isAuthenticated } = useLogto();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const accessToken = await getAccessToken('${props.audience}');
+      console.log(accessToken); // eyJhbG...
+    }
+  }, [isAuthenticated, getAccessToken]);
+};`}
+  </code>
+</pre>
+
+Lastly, include this access token in the `Authorization` header when making requests to your API:
+
+<pre>
+  <code className="language-ts">
+  {`const Content = () => {
+  const { getAccessToken, isAuthenticated } = useLogto();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const accessToken = await getAccessToken('${props.audience}');
+      // Assuming you have a '/api/products' endpoint on your express server
+      const response = await fetch('${new URL(props.audience).origin}/api/products', {
+        headers: {
+          Authorization: \`Bearer \${accessToken}\`,
+        },
+      });
+    }
+  }, [isAuthenticated, getAccessToken]);
+};`}
+  </code>
+</pre>
+
+</Step>
+
+<Step title="Verify the access token in your API">
+
+In your Express.js application, install the `jose` library for JWT verification:
+
+<Tabs>
+<TabItem value="npm" label="npm">
+
+```bash
+npm install jose
+```
+
+</TabItem>
+<TabItem value="yarn" label="Yarn">
+
+```bash
+yarn add jose
+```
+
+</TabItem>
+<TabItem value="pnpm" label="pnpm">
+
+```bash
+pnpm add jose
+```
+
+</TabItem>
+</Tabs>
+
+As we're using Bearer authentication, extract the access token from the `Authorization` header:
+
+```ts
+import { IncomingHttpHeaders } from 'http';
+
+const extractBearerTokenFromHeaders = ({ authorization }: IncomingHttpHeaders) => {
+  if (!authorization) {
+    throw new Error('Authorization header is missing');
+  }
+
+  if (!authorization.startsWith('Bearer')) {
+    throw new Error('Authorization header is not in the Bearer scheme');
+  }
+
+  return authorization.slice(7); // The length of 'Bearer ' is 7
+};
+```
+
+Subsequently, create a middleware to verify the access token:
+
+<pre>
+  <code className="language-ts">
+  {`import { createRemoteJWKSet, jwtVerify } from 'jose';
+
+// Generate a JWKS using jwks_uri obtained from the Logto server
+const jwks = createRemoteJWKSet(new URL('${appendPath(props.endpoint, '/oidc/jwks')}'));
+
+export const authMiddleware = async (req, res, next) => {
+  // Extract the token using the helper function defined above
+  const token = extractBearerTokenFromHeaders(req.headers);
+
+  const { payload } = await jwtVerify(
+    // The raw Bearer Token extracted from the request header
+    token,
+    jwks,
+    {
+      // Expected issuer of the token, issued by the Logto server
+      issuer: '${appendPath(props.endpoint, '/oidc')}',
+      // Expected audience token, the resource indicator of the current API
+      audience: '${props.audience}',
+    }
+  );
+
+  // Sub is the user ID, used for user identification
+  const { scope, sub } = payload;
+
+  // For role-based access control, we'll discuss it later
+  assert(scope.split(' ').includes('read:products'));
+
+  return next();
+};`}
+  </code>
+</pre>
+
+You can now employ this middleware to protect your API endpoints:
+
+```ts
+// Assuming you have a '/api/products' endpoint on your express server
+app.get('/api/products', authMiddleware, (req, res) => {
+  // API business logic
+  // ...
+});
+```
+
+With this approach, you don't need to contact the Logto server every time a request arrives. Instead, you fetch the JSON Web Key Set (JWKS) from the Logto server once and subsequently verify access tokens locally.
+
+</Step>
+
+<Step title="Role-based access control">
+
+Up to this point, we've only verified that a user has logged in with Logto. We still don't know if the user possesses the appropriate permission to access the API endpoint. This is because Logto permits anyone to obtain an access token for an existing API resource.
+
+To address this, we can employ role-based access control (RBAC). In Logto, you can define roles and assign permissions to them. Consult [this tutorial](https://docs.logto.io/docs/recipes/rbac/) to learn how to define roles and permissions in Logto.
+
+<InlineNotification>
+  "Permission" is identical to "scope" in [OAuth 2.0](https://oauth.net/2/scope/). We use the word "permission" in Admin Console since it's more intuitive for business.
+</InlineNotification>
+
+After defining roles and permissions, you can add the `scopes` option to the `LogtoProvider` component:
+
+<pre>
+  <code className="language-ts">
+  {`<LogtoProvider
+  config={{
+    // ...other configurations
+    resources: ['${props.audience}'],
+    scopes: ['read:products', 'write:products'], // Replace with the actual scope(s)
+  }}
+>`}
+  </code>
+</pre>
+
+Logto will then only issue an access token with the appropriate scope(s) to the user. For instance, if a user only has the `read:products` scope, the access token will solely contain that scope:
+
+```json
+{
+  "scope": "read:products",
+  "sub": "1234567890"
+}
+```
+
+If a user has both the `read:products` and `write:products` scopes, the access token will contain both scopes with a space as the delimiter:
+
+```json
+{
+  "scope": "read:products write:products",
+  "sub": "1234567890"
+}
+```
+
+In your Express.js application, you can verify if the access token contains the correct scope(s) before granting access to the API endpoint:
+
+```ts
+assert(scope.split(' ').includes('read:products'));
+```
+
+</Step>
+
+</Steps>

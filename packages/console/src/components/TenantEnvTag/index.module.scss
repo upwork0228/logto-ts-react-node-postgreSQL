@@ -1,0 +1,25 @@
+@use '@/scss/underscore' as _;
+
+.tag {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 _.unit(1.5);
+  border-radius: _.unit(1);
+  font: var(--font-label-3);
+
+  &.development {
+    background: var(--color-env-tag-development);
+  }
+
+  &.staging {
+    background: var(--color-env-tag-staging);
+  }
+
+  &.production {
+    background: var(--color-env-tag-production);
+  }
+
+  &.large {
+    font: var(--font-label-1);
+  }
+}

@@ -1,0 +1,28 @@
+@use '@/scss/underscore' as _;
+
+.type {
+  @include _.text-ellipsis;
+}
+
+.container {
+  width: 40px;
+  height: 40px;
+  border-radius: _.unit(2);
+
+  > img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.logo {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+}
+
+.domains {
+  display: flex;
+  flex-wrap: wrap;
+  gap: _.unit(2);
+}

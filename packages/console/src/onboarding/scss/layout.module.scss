@@ -1,0 +1,25 @@
+@use '@/scss/underscore' as _;
+
+.page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.contentContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: _.unit(6);
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 858px;
+  border-radius: 16px;
+  padding: _.unit(12);
+  background-color: var(--color-layer-1);
+  margin-bottom: _.unit(4);
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,13 @@
+@use '@/scss/underscore' as _;
+
+.sectionTitle {
+  font: var(--font-title-2);
+}
+
+.description {
+  font: var(--font-body-2);
+}
+
+.panel {
+  flex: 1;
+}

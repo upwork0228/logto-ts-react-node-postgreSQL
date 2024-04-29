@@ -1,0 +1,58 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "[scss]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "explicit"
+    }
+  },
+  "stylelint.validate": [
+    "css",
+    "scss"
+  ],
+  "eslint.workingDirectories": [
+    {
+      "pattern": "./packages/*",
+    },
+    {
+      "pattern": "./packages/toolkit/*",
+    }
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "packages/core/src/routes/**/*.openapi.json"
+      ],
+      "url": "https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json"
+    }
+  ],
+  "cSpell.words": [
+    "Alipay",
+    "CIAM",
+    "codecov",
+    "hasura",
+    "Logto",
+    "oidc",
+    "passcode",
+    "passcodes",
+    "Passwordless",
+    "pnpm",
+    "silverhand",
+    "slonik",
+    "stylelint",
+    "timestamptz",
+    "topbar",
+    "withtyped",
+    "sendgrid",
+    "mailgun",
+    "upsell",
+  ]
+}

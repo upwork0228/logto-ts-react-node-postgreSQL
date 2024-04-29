@@ -1,0 +1,17 @@
+{
+  "extends": "@silverhand/ts-config/tsconfig.base",
+  "compilerOptions": {
+    "rootDir": "src",
+    "isolatedModules": false,
+    "allowJs": true,
+    "outDir": "lib",
+    "baseUrl": ".",
+    "paths": {
+      "#src/*": [
+        "src/*"
+      ]
+    },
+    "types": ["jest", "jest-matcher-specific-error", "jest-puppeteer", "expect-puppeteer"],
+  },
+  "include": ["src"]
+}

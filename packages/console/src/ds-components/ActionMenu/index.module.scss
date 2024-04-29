@@ -1,0 +1,14 @@
+@use '@/scss/underscore' as _;
+
+.content {
+  padding: _.unit(1);
+  min-width: 200px;
+}
+
+.dropdownTitle {
+  padding: _.unit(3);
+}
+
+.actionMenuButton {
+  display: inline-block;
+}

@@ -1,0 +1,21 @@
+@use '@/scss/underscore' as _;
+
+.readme {
+  margin: _.unit(6);
+}
+
+.container {
+  width: 60px;
+  height: 60px;
+  border-radius: _.unit(3);
+
+  > img {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+}

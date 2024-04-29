@@ -1,0 +1,26 @@
+@use '@/scss/underscore' as _;
+@use '@/scss/dimensions' as dim;
+
+.actionBar {
+  inset: auto 0 0;
+  width: 100%;
+  padding: _.unit(4) _.unit(6);
+  background-color: var(--color-layer-1);
+  box-shadow: var(--shadow-3);
+  @include _.z-index(front);
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: dim.$guide-main-content-max-width;
+    margin: 0 auto;
+  }
+
+  .text {
+    font: var(--font-body-2);
+    color: var(--color-text);
+    margin-right: _.unit(3);
+    @include _.multi-line-ellipsis(2);
+  }
+}

@@ -1,0 +1,15 @@
+@use '@/scss/underscore' as _;
+
+.overlay {
+  background: transparent;
+  padding: unset;
+  overflow-y: unset;
+
+  .content {
+    position: relative;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

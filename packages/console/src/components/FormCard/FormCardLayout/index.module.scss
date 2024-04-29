@@ -1,0 +1,40 @@
+@use '@/scss/underscore' as _;
+
+$gutter-width: 12px;
+$column-width: calc((100% - 23 * $gutter-width) / 24);
+
+.responsiveWrapper {
+  width: 100%;
+  container-type: inline-size;
+
+  .container {
+    width: 100%;
+    padding: _.unit(6) _.unit(8);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .introduction {
+    width: calc($column-width * 7 + $gutter-width * 6);
+    display: flex;
+    flex-direction: column;
+    gap: _.unit(2);
+  }
+
+  .form {
+    width: calc($column-width * 16 + $gutter-width * 15);
+  }
+
+  @container (max-width: 600px) {
+    .container {
+      flex-direction: column;
+      justify-content: unset;
+      gap: _.unit(4);
+    }
+
+    .introduction,
+    .form {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+@use '@/scss/underscore' as _;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: _.unit(2);
+  background-color: var(--color-layer-1);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: _.unit(3);
+  min-width: 220px;
+  max-width: 460px;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &.hasButton {
+    cursor: default;
+  }
+
+  &:not(.hasButton):hover {
+    box-shadow: var(--shadow-2);
+  }
+
+  &.hasBorder {
+    border-color: var(--color-divider);
+  }
+
+  .header {
+    display: flex;
+    align-items: flex-start;
+    gap: _.unit(2);
+  }
+
+  .logo {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .tagWrapper {
+    display: flex;
+    align-items: center;
+    gap: _.unit(1);
+  }
+
+  .infoWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: _.unit(1);
+  }
+
+  .flexRow {
+    display: flex;
+    align-items: flex-start; // align name and the feature tag to the top
+    justify-content: space-between;
+  }
+
+  .name {
+    font: var(--font-label-2);
+    color: var(--color-text);
+    margin-right: _.unit(1);
+  }
+
+  .description {
+    font: var(--font-body-3);
+    color: var(--color-text-secondary);
+    @include _.multi-line-ellipsis(3);
+  }
+}
+
+.logoSkeleton {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  @include _.shimmering-animation;
+}

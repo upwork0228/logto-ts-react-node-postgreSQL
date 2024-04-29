@@ -1,0 +1,30 @@
+@use '@/scss/underscore' as _;
+
+.container {
+  .description {
+    font: var(--font-body-2);
+  }
+
+  .content {
+    display: flex;
+    margin-top: _.unit(3);
+    border-radius: 8px;
+    font: var(--font-body-2);
+    justify-content: space-between;
+    align-items: stretch;
+    column-gap: _.unit(3);
+
+    .section {
+      flex: 1;
+      background: var(--color-layer-2);
+      border-radius: 8px;
+      padding: _.unit(5);
+      color: var(--color-text);
+
+      .title {
+        font: var(--font-title-2);
+        margin: _.unit(1) 0;
+      }
+    }
+  }
+}

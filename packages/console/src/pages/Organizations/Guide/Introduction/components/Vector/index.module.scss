@@ -1,0 +1,18 @@
+.vector {
+  flex-shrink: 0;
+  opacity: 30%;
+  transition: opacity 0.3s ease-in-out;
+
+  &.active {
+    opacity: 100%;
+  }
+
+  .textWrapper {
+    fill: var(--color-layer-1);
+  }
+
+  .text {
+    font: var(--font-body-3);
+    fill: var(--color-text-secondary);
+  }
+}

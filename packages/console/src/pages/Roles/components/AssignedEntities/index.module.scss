@@ -1,0 +1,38 @@
+@use '@/scss/underscore' as _;
+
+.entities {
+  display: flex;
+  align-items: center;
+
+  .avatars {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    .avatar {
+      position: relative;
+      border: 2px solid var(--color-layer-1);
+      box-sizing: content-box;
+
+      &:not(:last-child) {
+        margin-left: _.unit(-2);
+      }
+    }
+
+    .applicationIcon {
+      width: 24px;
+      height: 24px;
+      border-radius: _.unit(2);
+    }
+  }
+
+  .count {
+    margin-left: 9px;
+    color: var(--color-text);
+    font: var(--font-body-2);
+  }
+}
+
+.empty {
+  padding-left: _.unit(0.5);
+}

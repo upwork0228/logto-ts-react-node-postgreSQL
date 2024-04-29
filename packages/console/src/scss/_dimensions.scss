@@ -1,0 +1,15 @@
+$modal-layout-width-xlarge: 1224px;
+$modal-layout-width-large: 784px;
+$modal-layout-width-medium: 600px;
+$modal-layout-width-small: 352px;
+$modal-layout-grid-large: 850px;
+$modal-layout-grid-medium: 668px;
+$modal-layout-grid-small: 500px;
+
+// Guide related dimensions
+$guide-main-content-max-width: 858px;
+$guide-sidebar-width: 220px;
+$guide-panel-gap: 30px;
+$guide-content-padding: 24px;
+$guide-content-max-width: calc($guide-main-content-max-width + 2 * ($guide-sidebar-width + $guide-panel-gap + $guide-content-padding));
+$guide-content-min-width: 750px;

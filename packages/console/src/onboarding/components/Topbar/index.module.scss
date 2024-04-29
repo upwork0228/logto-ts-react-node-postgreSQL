@@ -1,0 +1,15 @@
+@use '@/scss/underscore' as _;
+
+.topbar {
+  flex: 0 0 64px;
+  width: 100%;
+  padding: 0 _.unit(6);
+  display: flex;
+  align-items: center;
+
+  .logo {
+    width: auto;
+    height: 28px;
+    color: var(--color-text);
+  }
+}

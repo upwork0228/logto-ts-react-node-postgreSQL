@@ -1,0 +1,40 @@
+@use '@/scss/underscore' as _;
+
+.socialButton {
+  justify-content: normal;
+  padding: 0 _.unit(4);
+}
+
+.icon {
+  width: _.unit(6);
+  height: _.unit(6);
+  @include _.image-align-center;
+  overflow: hidden;
+}
+
+.name {
+  flex: 1;
+  overflow: hidden;
+  margin-left: _.unit(-6);
+  @include _.flex-row;
+  height: 100%;
+
+  span {
+    @include _.multi-line-ellipsis(2);
+    line-height: _.unit(5);
+  }
+
+  .placeHolder {
+    flex: 1;
+
+    &:first-child {
+      min-width: _.unit(10);
+    }
+  }
+}
+
+:global(body.desktop) {
+  .name span {
+    line-height: _.unit(4);
+  }
+}

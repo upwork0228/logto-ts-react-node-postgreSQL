@@ -1,0 +1,24 @@
+{
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "github.copilot",
+        "eamodio.gitlens",
+        "mikestead.dotenv",
+        "dbaeumer.vscode-eslint",
+        "stylelint.vscode-stylelint",
+        "clinyong.vscode-css-modules",
+        "vunguyentuan.vscode-css-variables",
+        "frigus02.vscode-sql-tagged-template-literals-syntax-only"
+      ]
+    }
+  },
+  "postStartCommand": "docker run -d -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=p0stgr3s postgres:14-alpine",
+  "containerEnv": {
+    "DB_URL": "postgres://postgres:p0stgr3s@localhost:5432/logto",
+    "TRUST_PROXY_HEADER": "1",
+    "ADMIN_ENDPOINT": "http://localhost:3002"
+  }
+}

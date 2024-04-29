@@ -1,0 +1,61 @@
+{
+  "name": "@logto/app-insights",
+  "version": "1.4.0",
+  "main": "lib/index.js",
+  "author": "Silverhand Inc. <contact@silverhand.io>",
+  "license": "MPL-2.0",
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "exports": {
+    "./*": {
+      "import": "./lib/*.js",
+      "types": "./lib/*.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "build": "rm -rf lib/ && tsc -p tsconfig.build.json",
+    "build:test": "pnpm build",
+    "dev": "tsc -p tsconfig.build.json --watch --preserveWatchOutput --incremental",
+    "lint": "eslint --ext .ts src",
+    "lint:report": "pnpm lint --format json --output-file report.json",
+    "test": "vitest src",
+    "test:ci": "pnpm run test --silent --coverage",
+    "prepack": "pnpm build"
+  },
+  "devDependencies": {
+    "@silverhand/eslint-config": "6.0.1",
+    "@silverhand/ts-config": "6.0.0",
+    "@types/node": "^20.9.5",
+    "@vitest/coverage-v8": "^1.4.0",
+    "eslint": "^8.56.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.4.0"
+  },
+  "engines": {
+    "node": "^20.9.0"
+  },
+  "eslintConfig": {
+    "extends": "@silverhand"
+  },
+  "prettier": "@silverhand/eslint-config/.prettierrc",
+  "dependencies": {
+    "@silverhand/essentials": "^2.9.0",
+    "applicationinsights": "^2.9.5"
+  },
+  "peerDependencies": {
+    "tslib": "^2.4.1"
+  },
+  "peerDependenciesMeta": {
+    "tslib": {
+      "optional": true
+    }
+  }
+}

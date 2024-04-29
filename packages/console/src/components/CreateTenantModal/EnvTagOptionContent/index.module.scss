@@ -1,0 +1,43 @@
+@use '@/scss/underscore' as _;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: _.unit(3);
+  padding: _.unit(2.5) _.unit(3);
+}
+
+.tag {
+  align-self: flex-start;
+}
+
+.description {
+  font: var(--font-body-2);
+  color: var(--color-text-secondary);
+
+  // Responsive rules:
+  // - If the page width is greater than 700px, fix it to 2 lines.
+  // - If the page width is between 540px and 700px, fix it to 3 lines.
+  // - If the page width is less than 540px, fix it to 4 lines.
+  // - Contents that exceed the number of lines are replaced with ellipsis.
+  @include _.multi-line-ellipsis(2);
+  height: 40px;
+
+  @media screen and (max-width: 700px) {
+    height: 60px;
+    @include _.multi-line-ellipsis(3);
+  }
+
+  @media screen and (max-width: 540px) {
+    height: 80px;
+    @include _.multi-line-ellipsis(4);
+  }
+}
+
+.hint {
+  font: var(--font-body-2);
+}
+
+.planNameTag {
+  margin-left: _.unit(1);
+}

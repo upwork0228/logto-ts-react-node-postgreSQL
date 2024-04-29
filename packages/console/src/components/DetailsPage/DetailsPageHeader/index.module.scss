@@ -1,0 +1,58 @@
+@use '@/scss/underscore' as _;
+
+.header {
+  flex: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: _.unit(6) _.unit(8);
+  gap: _.unit(6);
+
+  .copyId {
+    flex: 1;
+  }
+
+  .operations {
+    display: flex;
+    align-items: center;
+    gap: _.unit(3);
+
+    svg {
+      color: var(--color-text-secondary);
+    }
+  }
+
+  .metadata {
+    flex: 1;
+    overflow: hidden;
+
+    .name {
+      font: var(--font-title-1);
+      color: var(--color-text);
+      @include _.text-ellipsis;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      gap: _.unit(2);
+
+      .text {
+        font: var(--font-label-2);
+        color: var(--color-text-secondary);
+      }
+
+      .verticalBar {
+        @include _.vertical-bar;
+        height: 12px;
+      }
+    }
+  }
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}

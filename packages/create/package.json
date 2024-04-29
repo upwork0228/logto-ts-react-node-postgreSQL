@@ -1,0 +1,20 @@
+{
+  "name": "@logto/create",
+  "version": "1.15.0",
+  "author": "Silverhand Inc. <contact@silverhand.io>",
+  "license": "MPL-2.0",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "logto-create": "./index.sh"
+  },
+  "scripts": {},
+  "engines": {
+    "node": "^20.9.0"
+  },
+  "dependencies": {
+    "@logto/cli": "workspace:^1.15.0"
+  }
+}

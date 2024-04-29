@@ -1,0 +1,7 @@
+@use '@/scss/underscore' as _;
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: _.unit(3);
+}

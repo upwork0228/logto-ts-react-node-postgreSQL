@@ -1,0 +1,34 @@
+@use '@/scss/underscore' as _;
+
+.chargeNotification {
+  margin: _.unit(4) 0 0;
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.applicationName {
+  width: 360px;
+}
+
+.tabs {
+  margin-top: _.unit(4);
+}
+
+.guideLibraryContainer {
+  flex: 1;
+  background: var(--color-layer-1);
+  border-radius: 12px;
+  padding: _.unit(6) 0;
+  margin-top: _.unit(4);
+
+  .title {
+    align-items: center;
+    margin-bottom: _.unit(6);
+  }
+
+  .library {
+    padding: 0 _.unit(6);
+  }
+}

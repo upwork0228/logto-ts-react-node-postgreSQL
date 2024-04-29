@@ -1,0 +1,66 @@
+@use '@/scss/underscore' as _;
+
+.tipBubble {
+  position: absolute;
+  border-radius: 8px;
+  background: var(--color-tooltip-background);
+  color: var(--color-tooltip-text);
+  box-shadow: var(--shadow-2);
+  padding: _.unit(2) _.unit(3);
+  font: var(--font-body-2);
+  max-width: 300px;
+  white-space: pre-wrap;
+  @include _.z-index(tooltip);
+
+  &.successful {
+    background: var(--color-success-60);
+  }
+
+  &.invisible {
+    opacity: 0%;
+  }
+
+  a {
+    color: #cabeff;
+
+    &:active {
+      color: #cabeff;
+    }
+  }
+
+  .arrow {
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: inherit;
+    border-radius: _.unit(0.5) 0 _.unit(0.5);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &.top {
+    .arrow {
+      top: 100%;
+    }
+  }
+
+  &.right {
+    .arrow {
+      top: 50%;
+      left: 0%;
+    }
+  }
+
+  &.bottom {
+    .arrow {
+      top: 0%;
+    }
+  }
+
+  &.left {
+    .arrow {
+      top: 50%;
+      left: 100%;
+    }
+  }
+}

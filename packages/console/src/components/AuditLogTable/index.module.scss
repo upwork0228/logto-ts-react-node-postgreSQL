@@ -1,0 +1,22 @@
+@use '@/scss/underscore' as _;
+
+.filter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .title {
+    color: var(--color-text-secondary);
+    font: var(--font-body-2);
+  }
+
+  .eventSelector {
+    width: 300px;
+    margin-left: _.unit(2);
+  }
+
+  .applicationSelector {
+    width: 250px;
+    margin-left: _.unit(2);
+  }
+}

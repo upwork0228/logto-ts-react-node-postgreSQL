@@ -1,0 +1,80 @@
+@use '@/scss/underscore' as _;
+
+.container {
+  padding: _.unit(6) _.unit(6) _.unit(6) _.unit(4);
+  border-radius: 16px;
+  // Force dark theme on the code editor
+  background: #34353f;
+  position: relative;
+  overflow-y: auto;
+
+  .placeholder {
+    position: absolute;
+    inset: _.unit(6);
+    right: _.unit(8);
+    color: #95969f;
+    font: var(--font-body-2);
+  }
+
+  .copy {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    position: absolute;
+    top: _.unit(3);
+    right: _.unit(3);
+    opacity: 0%;
+    transition: opacity 0.2s ease-in-out;
+    @include _.z-index(front);
+    cursor: pointer;
+  }
+
+  &:hover {
+    .copy {
+      opacity: 100%;
+    }
+  }
+
+  .editor {
+    position: relative;
+    overflow-x: auto;
+
+    textarea {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: none;
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: 'Roboto Mono', monospace;
+      white-space: pre;
+      word-break: normal;
+      position: absolute;
+      inset: 0;
+      resize: none;
+      color: #fefefe;
+      -webkit-text-fill-color: transparent;
+      outline: none;
+      overflow: hidden;
+    }
+
+    &:not(.readonly) {
+      textarea,
+      pre {
+        display: flex;
+        min-height: 80px;
+      }
+    }
+  }
+
+  .editor::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.errorMessage {
+  font: var(--font-body-2);
+  color: var(--color-error);
+  margin-top: _.unit(1);
+}

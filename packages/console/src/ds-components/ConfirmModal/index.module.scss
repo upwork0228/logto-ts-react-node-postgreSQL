@@ -1,0 +1,13 @@
+@use '@/scss/underscore' as _;
+
+.overlay {
+  @include _.z-index(confirm-modal);
+}
+
+.content {
+  font: var(--font-body-2);
+
+  > :not(:first-child) {
+    margin: _.unit(6) 0 0;
+  }
+}

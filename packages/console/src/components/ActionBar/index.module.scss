@@ -1,0 +1,16 @@
+@use '@/scss/underscore' as _;
+
+.container {
+  height: 80px;
+  flex-shrink: 0;
+
+  .actions {
+    height: 100%;
+    background-color: var(--color-layer-1);
+    padding: 0 _.unit(17);
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}

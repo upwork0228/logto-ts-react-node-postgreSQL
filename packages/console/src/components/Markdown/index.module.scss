@@ -1,0 +1,103 @@
+@use '@/scss/underscore' as _;
+
+.markdown {
+  li {
+    font: var(--font-body-2);
+
+    ul,
+    ol {
+      padding-inline-start: 1ch;
+    }
+  }
+
+  ul {
+    padding-inline-start: 4ch;
+
+    > li {
+      margin-block: _.unit(2) _.unit(2);
+      padding-inline-start: _.unit(1);
+    }
+  }
+
+  ol {
+    padding-inline-start: 2ch;
+
+    > li {
+      margin-block: _.unit(3) _.unit(3);
+      padding-inline-start: _.unit(1);
+    }
+  }
+
+  a {
+    font: var(--font-body-2);
+    color: var(--color-text-link);
+    text-decoration: none;
+    text-underline-offset: 2px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: var(--color-primary-pressed);
+    }
+  }
+
+  h1 {
+    font: var(--font-title-1);
+    margin: _.unit(6) 0;
+  }
+
+  h2 {
+    font: var(--font-title-2);
+    color: var(--color-text-secondary);
+    margin: _.unit(6) 0 _.unit(3);
+  }
+
+  h3 {
+    font: var(--font-title-3);
+    margin: _.unit(6) 0 _.unit(3);
+  }
+
+  p {
+    font: var(--font-body-2);
+    margin: _.unit(3) 0;
+  }
+
+  table {
+    border: 1px solid var(--color-divider);
+    border-spacing: 0;
+    width: 100%;
+    table-layout: fixed;
+    word-break: break-word;
+
+    thead {
+      th {
+        font: var(--font-subhead-2);
+        color: var(--color-text);
+        padding: _.unit(3);
+        border-bottom: 1px solid var(--color-divider);
+        text-align: left;
+      }
+    }
+
+    tbody {
+      td {
+        font: var(--font-body-2);
+        border-bottom: 1px solid var(--color-divider);
+        padding: _.unit(3);
+      }
+    }
+  }
+
+  table + table {
+    margin-top: _.unit(3);
+  }
+}
+
+.inlineCode {
+  background: var(--color-layer-2);
+  font: var(--font-body-2);
+  padding: _.unit(1) _.unit(1);
+  border-radius: 4px;
+}

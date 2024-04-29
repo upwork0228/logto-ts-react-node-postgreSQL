@@ -1,0 +1,36 @@
+@use '@/scss/underscore' as _;
+
+.table {
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: _.unit(4);
+  padding-bottom: _.unit(3);
+
+  > td,
+  th {
+    width: calc((100% - _.unit(4)) / 2);
+  }
+}
+
+.header {
+  width: 100%;
+
+  > tr {
+    padding-bottom: _.unit(3);
+  }
+
+  * > th {
+    font: var(--font-label-2);
+    color: var(--color-text);
+    text-align: left;
+  }
+}
+
+.body {
+  width: 100%;
+}

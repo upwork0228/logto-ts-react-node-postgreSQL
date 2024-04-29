@@ -1,0 +1,19 @@
+@use '@/scss/underscore' as _;
+
+.roleOption {
+  display: flex;
+  align-items: center;
+  gap: _.unit(1);
+
+  &.large {
+    gap: _.unit(3);
+  }
+
+  > svg {
+    flex-shrink: 0;
+  }
+
+  > div {
+    font: var(--font-label-2);
+  }
+}

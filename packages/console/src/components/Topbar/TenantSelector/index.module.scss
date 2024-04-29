@@ -1,0 +1,106 @@
+@use '@/scss/underscore' as _;
+
+$topbar-height: 64px;
+$topbar-tenant-card-margin: _.unit(4);
+$dropdown-top-margin: _.unit(1);
+$dropdown-bottom-margin: _.unit(6);
+$dropdown-item-margin: _.unit(1);
+$dropdown-item-height: 40px;
+
+.currentTenantCard {
+  display: flex;
+  align-items: center;
+  padding: _.unit(1);
+  padding-left: _.unit(2);
+  margin-left: _.unit(4);
+  max-width: 500px;
+  border-radius: _.unit(2);
+  transition: background-color 0.2s ease-in-out;
+  position: relative;
+  border: none;
+  background-color: transparent;
+  gap: _.unit(2);
+
+  &:hover {
+    cursor: pointer;
+    background: var(--color-hover-variant);
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  .name {
+    font: var(--font-title-2);
+    @include _.text-ellipsis;
+  }
+
+  .redDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-on-error-container);
+  }
+
+  .arrowIcon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-neutral-variant-50);
+  }
+
+  &::before {
+    content: '';
+    width: 1px;
+    height: 16px;
+    background-color: var(--color-neutral-80);
+    flex-shrink: 0;
+    position: absolute;
+    left: _.unit(-3);
+  }
+
+  &:hover::before {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+.dropdown {
+  max-width: 500px;
+  min-width: 320px;
+
+  .scrollableContent {
+    max-height: calc(100vh - ($topbar-height - $topbar-tenant-card-margin + $dropdown-top-margin) - $dropdown-bottom-margin - ($dropdown-item-height + $dropdown-item-margin * 2)); // Secure 24px bottom safe margin.
+  }
+}
+
+.createTenantButton {
+  all: unset;
+  /**
+   * `inline-size: stretch` is needed since button will have the used value `inline-size: fit-content` by default.
+   * @see {@link https://html.spec.whatwg.org/multipage/rendering.html#button-layout}
+   */
+  inline-size: stretch;
+  display: flex;
+  align-items: center;
+  padding: _.unit(2.5) _.unit(3) _.unit(2.5) _.unit(4);
+  margin: _.unit(1);
+  border-radius: 6px;
+  transition: background-color 0.2s ease-in-out;
+  font: var(--font-body-2);
+  @include _.text-ellipsis;
+  justify-content: space-between;
+
+  &:hover {
+    background: var(--color-hover);
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  > svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-neutral-50);
+  }
+}

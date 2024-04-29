@@ -1,0 +1,64 @@
+@use '@/scss/underscore' as _;
+
+.item {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+
+  > svg {
+    flex-shrink: 0;
+  }
+
+  > div:not(:first-child) {
+    margin-left: _.unit(3);
+  }
+
+  .content {
+    padding-right: _.unit(4);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    // Note: add an offset to visually center the element.
+    margin-top: _.unit(-1);
+
+    > div:not(:last-child) {
+      margin-right: _.unit(2);
+    }
+
+    .meta {
+      overflow: hidden;
+
+      .title {
+        display: block;
+        font: var(--font-body-2);
+        text-decoration: none;
+        @include _.text-ellipsis;
+
+        &.withLink {
+          color: var(--color-text-link);
+        }
+      }
+
+      .subtitle {
+        font: var(--font-body-3);
+        color: var(--color-text-secondary);
+        @include _.text-ellipsis;
+      }
+    }
+  }
+
+  &.compact {
+    .content {
+      margin-top: unset;
+
+      .meta {
+        display: flex;
+        align-items: baseline;
+
+        .title {
+          margin-right: _.unit(1);
+        }
+      }
+    }
+  }
+}
